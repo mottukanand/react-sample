@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,6 +14,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios'
 import CopyRight from './CopyRight'
+import Header from './Header'
 
 
 const useStyles = theme => ({
@@ -50,7 +51,7 @@ class SignIn extends Component {
 
     const loginCredentials = {
       name: this.state.email,
-      description: this.state.password
+      password: this.state.password
     }
 
     axios.post('/api/projects', loginCredentials)
@@ -75,6 +76,8 @@ class SignIn extends Component {
     const { classes } = this.props;
 
     return (
+      <Fragment>
+      <Header />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -132,7 +135,7 @@ class SignIn extends Component {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/register" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
@@ -143,6 +146,7 @@ class SignIn extends Component {
           <CopyRight />
         </Box>
       </Container>
+      </Fragment>
     );
   }
 }
